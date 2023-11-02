@@ -28,9 +28,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: 'mobile-team'
           file: 'build/app/outputs/flutter-apk/app-release.apk'
-      - name: Increase Version Number
-        run: |
-          current_version=$(grep -oP '(?<=versionName ").*(?=")' app/build.gradle)
-          new_version=$(echo $current_version | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./')
-          sed -i "s/versionName \"$current_version\"/versionName \"$new_version\"/" app/build.gradle
-          git commit -m "Increase version to $new_version" app/build.gradle
+
