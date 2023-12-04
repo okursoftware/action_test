@@ -24,9 +24,8 @@ jobs:
           commentOutDevDependencies: 'true'
 
 
-      - name: Update File and Commit
-        run: |
-          echo "New content" >> PUBSPECT YAML.txt 
-          git add pubspec.yaml
-          git commit -m "Release Version kivierp  --${{ github.event.inputs.version_number }}"  # Commit mesajını belirtin
-          git push
+
+      - name: Add Version Number Update to Release Branch
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Release Version kivierp  --${{ github.event.inputs.version_number }}"
