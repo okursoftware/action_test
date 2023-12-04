@@ -15,7 +15,7 @@ jobs:
         with:
           ref: 'develop'
       - name: Make Script Executable
-        run: dart script.dart ${{ github.event.inputs.version_number }}
+        run: dart script/version.dart ${{ github.event.inputs.version_number }}
 
 
       - name: Add Version Number Update to Release Branch
