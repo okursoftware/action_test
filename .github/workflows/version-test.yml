@@ -1,23 +1,21 @@
-name: Update Version
-
 on:
   workflow_dispatch:
     inputs:
         version_number:
           description: 'New Version Number'     
-          required: true          
-            
-
+          required: true 
 jobs:
   build:
-    name: Analyze Project
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kivierp
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+          ref: 'develop'
       - name: Flutter YAML Version
         uses: Dbono-dev/yaml-action@v1.0.3
         with:
@@ -26,12 +24,11 @@ jobs:
               "version": "${{ github.event.inputs.version_number }}"
             }
           commentOutDevDependencies: 'true'
-      - name: Add Version Number Update to Release Branch
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: 'Update Package Version'
-          new_branch: 'release/candidate/${{ github.event.inputs.version_number }}'
-      - name: Create Pull Request
-        run: gh pr create -B develop -H release/candidate/${{ github.event.inputs.version_number }} --title '[RELEASE] v${{ github.event.inputs.version_number }}' --body 'Created by Github action' --label 'Production Release'
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - name: Update File and Commit
+        run: |
+          echo "New content" >> PUBSPECT YAML.txt 
+          git add pubspec.yaml
+          git commit -m "Release Version kivierp  --${{ github.event.inputs.version_number }}"  # Commit mesajını belirtin
+          git push
