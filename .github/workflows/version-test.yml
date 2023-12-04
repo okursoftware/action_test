@@ -32,6 +32,6 @@ jobs:
           message: 'Update Package Version'
           new_branch: 'release/candidate/${{ github.event.inputs.version_number }}'
       - name: Create Pull Request
-        run: gh pr create -B main -H release/candidate/${{ github.event.inputs.version_number }} --title '[RELEASE] v${{ github.event.inputs.version_number }}' --body 'Created by Github action' --label 'Production Release'
+        run: gh pr create -B develop -H release/candidate/${{ github.event.inputs.version_number }} --title '[RELEASE] v${{ github.event.inputs.version_number }}' --body 'Created by Github action' --label 'Production Release'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
