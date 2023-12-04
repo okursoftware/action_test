@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:convert';
 
-void main() {
+void main(List<String> arguments) {
   // Konsoldan yeni versiyonu girmesini iste
-  stdout.write('Enter the new version: ');
-  final newVersion = stdin.readLineSync();
+ 
+  final newVersion =  arguments[0];
 
   // Güncellemeleri yapmak için pubspec.yaml dosyasını oku
   final file = File('pubspec.yaml');
