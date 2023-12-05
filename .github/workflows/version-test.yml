@@ -28,4 +28,4 @@ jobs:
       - name: Add Version Number Update to Release Branch
         uses: EndBug/add-and-commit@v9
         with:
-          message: "Release Version kivierp  --${{ github.event.inputs.version_number }}"
+          message: "Release Version   --${{ github.event.inputs.version_number }}"
